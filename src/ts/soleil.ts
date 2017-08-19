@@ -2,7 +2,7 @@
  * Created by akersten on 8/19/17.
  */
 
-
+/// <reference path="../../node_modules/phaser-ce/typescript/phaser.d.ts" />
 
 class Soleil {
 
