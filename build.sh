@@ -17,6 +17,10 @@ if  [ ! -d bin/js/lib ]
 then
     mkdir -p bin/js/lib
 fi
+if [ ! -d build/ts ]
+then
+    mkdir -p build/ts
+fi
 
 echo "  Building stylesheets..."
 
@@ -30,13 +34,17 @@ echo "  Copying files..."
 
 cp index.html bin/index.html
 
-#echo "  Building scripts..."
+echo "  Building scripts..."
 
-#tsc
+tsc
 
 #echo "  Bundling scripts..."
 ##browserify static/js/bin/base.js -o static/js/bin/base.bundled.js
 #for f in $(find static/js/bin/react-apps/ -name '*.js'); do echo "    $f"; browserify $f -o ${f%.*}.bundled.js; done
+
+# Cleanup
+
+rm -rf build/
 
 echo "-----------------------------------------------------------------------------------"
 echo "Build complete - visit bin/index.html."

@@ -6,10 +6,10 @@
     "sourceMap": true,
     "moduleResolution": "node",
     "lib": [
-      "dom",
-      "es5",
-      "scripthost",
-      "es2015.iterable"
+      "es6", "dom", "es2015.promise"
     ]
-  }
+  },
+  "files": [
+    "node_modules/phaser-ce/typescript/phaser.d.ts"
+  ]
 }
