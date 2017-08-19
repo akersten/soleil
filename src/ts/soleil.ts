@@ -13,7 +13,7 @@ class Soleil {
     game: Phaser.Game;
 
     preload() {
-        this.game.load.image('logo', 'phaser2.png');
+        this.game.load.image('logo', 'img/placeholder_256.png');
     }
 
     create() {

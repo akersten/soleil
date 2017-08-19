@@ -1,15 +1,14 @@
 {
+  // Files directives are removed because they are needed for IDE completion - the <reference path> doesn't actually
+  // work all the way for IDEA IDE. We do want to compile everything instead of just these files though, so get rid of
+  // the "files" directive before running the compiler. Lines are stripped by build.sh.
+  "files": [ "node_modules/phaser-ce/typescript/phaser.d.ts" ], // #STRIP#
+
   "compilerOptions": {
     "target": "es5",
     "outDir": "bin/js",
     "rootDir": "src/ts",
     "sourceMap": true,
-    "moduleResolution": "node",
-    "lib": [
-      "es6", "dom", "es2015.promise"
-    ]
-  },
-  "files": [
-    "node_modules/phaser-ce/typescript/phaser.d.ts"
-  ]
+    "moduleResolution": "node"
+  }
 }

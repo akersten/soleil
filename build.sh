@@ -1,11 +1,13 @@
 #!/bin/sh
 
-# This script builds the SCSS, Typescript, and other static files from source. It should be non-destructive and
-# idempotent.
+# This script builds the SCSS, Typescript, and other static files from source.
 
 clear
 
 echo "Soleil build started..."
+
+echo "  Getting ready..."
+rm -rf bin/
 
 echo "  Creating output directories..."
 
@@ -21,6 +23,10 @@ if [ ! -d build/ts ]
 then
     mkdir -p build/ts
 fi
+if [ ! -d build/img ]
+then
+    mkdir -p build/img
+fi
 
 echo "  Building stylesheets..."
 
@@ -33,18 +39,24 @@ cp node_modules/phaser-ce/build/phaser.js bin/js/lib/phaser.js
 echo "  Copying files..."
 
 cp index.html bin/index.html
+cp -r src/img/ bin/img/
 
 echo "  Building scripts..."
 
+cp tsconfig.json tsconfig.json.bak
+sed -i '/#STRIP#/d' ./tsconfig.json
 tsc
+rm tsconfig.json
+mv tsconfig.json.bak tsconfig.json
 
-#echo "  Bundling scripts..."
+echo "  Bundling scripts..."
 ##browserify static/js/bin/base.js -o static/js/bin/base.bundled.js
-#for f in $(find static/js/bin/react-apps/ -name '*.js'); do echo "    $f"; browserify $f -o ${f%.*}.bundled.js; done
+for f in $(find bin/js/ -name '*.js'); do echo "    $f"; browserify $f -o ${f%.*}.bundled.js; done
 
-# Cleanup
 
-rm -rf build/
+
+
+
 
 echo "-----------------------------------------------------------------------------------"
 echo "Build complete - visit bin/index.html."
