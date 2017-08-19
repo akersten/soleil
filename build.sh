@@ -49,15 +49,22 @@ tsc
 rm tsconfig.json
 mv tsconfig.json.bak tsconfig.json
 
-echo "  Bundling scripts..."
+#echo "  Bundling scripts..."
 ##browserify static/js/bin/base.js -o static/js/bin/base.bundled.js
-for f in $(find bin/js/ -name '*.js'); do echo "    $f"; browserify $f -o ${f%.*}.bundled.js; done
+#for f in $(find bin/js/ -name '*.js'); do echo "    $f"; browserify $f -o ${f%.*}.bundled.js; done
 
 
-
-
-
+if [ ! -d ~/localhost ]
+then
+    echo "-----------------------------------------------------------------------------------"
+    echo "Build complete."
+    echo "-----------------------------------------------------------------------------------"
+    exit
+fi
 
 echo "-----------------------------------------------------------------------------------"
-echo "Build complete - visit bin/index.html."
+echo "Build complete - copying to local webserver directory."
 echo "-----------------------------------------------------------------------------------"
+rm -rf ~/localhost/soleil
+mkdir ~/localhost/soleil
+cp -r bin/. ~/localhost/soleil
