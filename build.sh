@@ -26,13 +26,12 @@ echo "  Copying libraries to output directory..."
 
 cp node_modules/phaser-ce/build/phaser.js bin/js/lib/phaser.js
 
+echo "  Copying files..."
+
+cp index.html bin/index.html
+
 #echo "  Building scripts..."
 
-#rm -rf static/js/bin/
-#if  [ ! -d static/js/bin ]
-#then
-#    mkdir -p static/js/bin
-#fi
 #tsc
 
 #echo "  Bundling scripts..."
