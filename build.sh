@@ -7,14 +7,24 @@ clear
 
 echo "Soleil build started..."
 
-echo "  Building stylesheets..."
+echo "  Creating output directories..."
 
 if  [ ! -d bin/css ]
 then
     mkdir -p bin/css
 fi
+if  [ ! -d bin/js/lib ]
+then
+    mkdir -p bin/js/lib
+fi
 
-sass src/scss/bulma.scss static/css/bin/bulma.css
+echo "  Building stylesheets..."
+
+sass src/scss/index.scss bin/css/index.css
+
+echo "  Copying libraries to output directory..."
+
+cp node_modules/phaser-ce/build/phaser.js bin/js/lib/phaser.js
 
 #echo "  Building scripts..."
 
@@ -30,5 +40,5 @@ sass src/scss/bulma.scss static/css/bin/bulma.css
 #for f in $(find static/js/bin/react-apps/ -name '*.js'); do echo "    $f"; browserify $f -o ${f%.*}.bundled.js; done
 
 echo "-----------------------------------------------------------------------------------"
-echo "Build complete - visit bin/index.html.
+echo "Build complete - visit bin/index.html."
 echo "-----------------------------------------------------------------------------------"
