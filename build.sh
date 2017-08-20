@@ -19,13 +19,9 @@ if  [ ! -d bin/js/lib ]
 then
     mkdir -p bin/js/lib
 fi
-if [ ! -d build/ts ]
+if [ ! -d bin/img ]
 then
-    mkdir -p build/ts
-fi
-if [ ! -d build/img ]
-then
-    mkdir -p build/img
+    mkdir -p bin/img
 fi
 
 echo "  Building stylesheets..."
@@ -41,7 +37,7 @@ cp node_modules/phaser-ce/build/custom/p2.js bin/js/lib/p2.js
 echo "  Copying files..."
 
 cp index.html bin/index.html
-cp -r src/img/ bin/img/
+cp -r src/img/. bin/img/
 
 echo "  Building scripts..."
 
@@ -51,10 +47,9 @@ tsc
 rm tsconfig.json
 mv tsconfig.json.bak tsconfig.json
 
-# Strictly speaking we don't need to bundle the libraries for Phaser 2 since they work out of the global namespace, just
-# include the .js on each page. Easy enough just to write this though and the files aren't hurting anything.
 echo "  Bundling scripts..."
-for f in $(find bin/js/ -name '*.js'); do echo "    $f"; browserify $f -o ${f%.*}.bundled.js; done
+browserify bin/js/soleil.js -o bin/js/soleil.bundled.js
+#for f in $(find bin/js/ -name '*.js'); do echo "    $f"; browserify $f -o ${f%.*}.bundled.js; done
 
 
 if [ ! -d ~/localhost ]

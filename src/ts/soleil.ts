@@ -20,7 +20,7 @@ class Soleil {
                 create: this.create
             }
         };
-        
+
         this.game = new Phaser.Game(soleilConfig);
 
     }
