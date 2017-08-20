@@ -38,8 +38,6 @@ class Soleil {
         logo.scale.setTo(0.5, 0.5);
 
         this.game.add.tween(logo.scale).to({x: 2, y: 2}, 2000, Phaser.Easing.Bounce.Out, true);
-
-        this.game.add.graphics()
     }
 
     update(): void {
