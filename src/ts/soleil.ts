@@ -10,14 +10,15 @@ class Soleil {
 
     constructor() {
 
-        let soleilConfig : IGameConfig = {
+        let soleilConfig: IGameConfig = {
             width: 800,
             height: 600,
             renderer: Phaser.AUTO,
             parent: 'app',
             state: {
                 preload: this.preload,
-                create: this.create
+                create: this.create,
+                update: this.update
             }
         };
 
@@ -27,16 +28,22 @@ class Soleil {
 
     game: Phaser.Game;
 
-    preload() {
+    preload(): void {
         this.game.load.image('logo', 'img/placeholder_256.png');
     }
 
-    create() {
+    create(): void {
         let logo = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'logo');
         logo.anchor.setTo(0.5, 0.5);
         logo.scale.setTo(0.5, 0.5);
 
-        this.game.add.tween(logo.scale).to({x: 2, y: 2},2000, Phaser.Easing.Bounce.Out, true);
+        this.game.add.tween(logo.scale).to({x: 2, y: 2}, 2000, Phaser.Easing.Bounce.Out, true);
+
+        this.game.add.graphics()
+    }
+
+    update(): void {
+
     }
 
 
