@@ -51,8 +51,9 @@ tsc
 rm tsconfig.json
 mv tsconfig.json.bak tsconfig.json
 
+# Strictly speaking we don't need to bundle the libraries for Phaser 2 since they work out of the global namespace, just
+# include the .js on each page. Easy enough just to write this though and the files aren't hurting anything.
 echo "  Bundling scripts..."
-##browserify static/js/bin/base.js -o static/js/bin/base.bundled.js
 for f in $(find bin/js/ -name '*.js'); do echo "    $f"; browserify $f -o ${f%.*}.bundled.js; done
 
 

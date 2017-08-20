@@ -20,8 +20,7 @@ class Soleil {
                 create: this.create
             }
         };
-
-        //this.game = new Phaser.Game(800, 600, Phaser.AUTO, 'app', { preload: this.preload, create: this.create });
+        
         this.game = new Phaser.Game(soleilConfig);
 
     }
