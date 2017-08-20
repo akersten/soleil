@@ -35,6 +35,8 @@ sass src/scss/index.scss bin/css/index.css
 echo "  Copying libraries to output directory..."
 
 cp node_modules/phaser-ce/build/phaser.js bin/js/lib/phaser.js
+cp node_modules/phaser-ce/build/custom/pixi.js bin/js/lib/pixi.js
+cp node_modules/phaser-ce/build/custom/p2.js bin/js/lib/p2.js
 
 echo "  Copying files..."
 
@@ -49,9 +51,9 @@ tsc
 rm tsconfig.json
 mv tsconfig.json.bak tsconfig.json
 
-#echo "  Bundling scripts..."
+echo "  Bundling scripts..."
 ##browserify static/js/bin/base.js -o static/js/bin/base.bundled.js
-#for f in $(find bin/js/ -name '*.js'); do echo "    $f"; browserify $f -o ${f%.*}.bundled.js; done
+for f in $(find bin/js/ -name '*.js'); do echo "    $f"; browserify $f -o ${f%.*}.bundled.js; done
 
 
 if [ ! -d ~/localhost ]

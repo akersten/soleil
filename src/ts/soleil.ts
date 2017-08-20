@@ -1,13 +1,29 @@
+import * as Phaser from "phaser-ce"
+import IGameConfig = Phaser.IGameConfig;
+
 /**
  * Created by akersten on 8/19/17.
  */
 
-/// <reference path="../../node_modules/phaser-ce/typescript/phaser.d.ts" />
 
 class Soleil {
 
     constructor() {
-        this.game = new Phaser.Game(800, 600, Phaser.AUTO, 'content', { preload: this.preload, create: this.create });
+
+        let soleilConfig : IGameConfig = {
+            width: 800,
+            height: 600,
+            renderer: Phaser.AUTO,
+            parent: 'app',
+            state: {
+                preload: this.preload,
+                create: this.create
+            }
+        };
+
+        //this.game = new Phaser.Game(800, 600, Phaser.AUTO, 'app', { preload: this.preload, create: this.create });
+        this.game = new Phaser.Game(soleilConfig);
+
     }
 
     game: Phaser.Game;
@@ -23,6 +39,8 @@ class Soleil {
 
         this.game.add.tween(logo.scale).to({x: 2, y: 2},2000, Phaser.Easing.Bounce.Out, true);
     }
+
+
 }
 
 window.onload = () => {
